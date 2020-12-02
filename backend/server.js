@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
-// const session = require('express-session')
+const session = require('express-session')
 // const cors = require('cors')
 const bodyParser = require("body-parser")
 const app = express()
@@ -19,10 +19,14 @@ mongoose.connection.once('open', () => {
 mongoose.connection.on('error', err =>console.log(err.message))
 mongoose.connection.on('disconnected', () =>console.log('mongo disconnected'))
 
-//controllers
-// const usersController = require('./controllers/users')
-// app.use('/user', usersController)
+//middleware for sessions
+app.use( session({ secret: 'ilovemovies',resave: false,saveUninitialized: false}))
 
+//controllers
+const usersController = require("./controllers/users")
+app.use('/user', usersController)
+const sessionsController = require("./controllers/session")
+app.use('/login', sessionsController)
 
 
 app.listen(port, () => {
