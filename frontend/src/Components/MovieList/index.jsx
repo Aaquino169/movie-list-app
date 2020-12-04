@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Card from "react-bootstrap/Card"
 import CardGroup from "react-bootstrap/CardGroup"
+import Button from "react-bootstrap/Button"
 
 
 export default class App  extends Component {
@@ -49,21 +50,39 @@ export default class App  extends Component {
     //         )
     //     })
     // }
+    // list() {
+    //     return this.state.moviesList.map(movie => {
+    //         return (
+                
+    //                 <Card className="bg-dark text-white movie-card">
+    //                     <Card.Img src= {movie.Poster} alt="Card image" />
+    //                     <Card.ImgOverlay>
+    //                         <Card.Title>{movie.Title}</Card.Title>
+    //                         <Card.Text>{movie.Year}</Card.Text>
+    //                     </Card.ImgOverlay>
+    //                 </Card>
+                
+    //         )
+    //     })
+    // }
+
     list() {
         return this.state.moviesList.map(movie => {
             return (
                 
-                    <Card className="bg-dark text-white movie-card">
-                        <Card.Img src= {movie.Poster} alt="Card image" />
-                        <Card.ImgOverlay>
+                        <Card style={{ width: '18rem' }} className="bg-dark text-white movie-card">
+                        <Card.Img variant="top" src={movie.Poster} />
+                        <Card.Body>
                             <Card.Title>{movie.Title}</Card.Title>
                             <Card.Text>{movie.Year}</Card.Text>
-                        </Card.ImgOverlay>
-                    </Card>
+                            <Button variant="primary">Add To Favorites</Button>
+                        </Card.Body>
+                        </Card>
                 
             )
         })
     }
+
 
     
 
@@ -79,7 +98,7 @@ export default class App  extends Component {
 
         return(
             <div>
-                <p>moviesList</p>
+                <h2>{this.props.title}</h2>
                 <div className= "card-container">
                     {this.list()}
                 </div>

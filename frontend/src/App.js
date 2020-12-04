@@ -15,9 +15,9 @@ export default class App  extends Component {
   render() {
     return(
       <div>
-        <div><MovieList search="Conjuring"/></div>
-        <div><MovieList search="X-Men"/></div>
-        <div><MovieList search="harry potter"/></div>        
+        <div><MovieList search="Conjuring" title="Scary Movies"/></div>
+        <div><MovieList search="X-Men" title="Xmen Movies"/></div>
+        <div><MovieList search="harry potter" title="Harry Potter Series"/></div>        
       </div>
     )
   }
