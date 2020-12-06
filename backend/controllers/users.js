@@ -54,4 +54,28 @@ users.put('/addToList/:imdbID', isAuthenticated, async (req,res) => {
     }
 })
 
+//remove from list 
+users.put('/removeFromList/:imdbID', isAuthenticated, async (req,res) => {
+    try {
+        let currentUser = req.session.currentUser
+
+        let userData = await Users.findById(currentUser._id)
+
+        let list = userData["Movie List"]
+
+        for(i in list) {
+            if(list[i].imdbID == req.params.imdbID) {
+                list.splice(i,1)
+            }
+        }
+
+        userData.save()
+
+        res.status(200).send(userData)
+
+    } catch (err) {
+        res.status(400).json({ err: err.message})
+    }
+})
+
 module.exports = users
