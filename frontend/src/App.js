@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar"
+import UserLogin from "./Components/UserLogin"
 
 export default class App  extends Component {
   constructor() {
@@ -20,9 +21,8 @@ export default class App  extends Component {
         <div>
           <NavBar/>
           <Switch>
-            <Route path="/">
-              <HomeScreenDisplay/> 
-            </Route>
+            <Route path="/" component={HomeScreenDisplay}/>
+            <Route path="/login" component={UserLogin}/>
           </Switch>
         </div>
       </Router>

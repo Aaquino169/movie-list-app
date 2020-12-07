@@ -75,7 +75,7 @@ export default class NavBar  extends Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="#features">My List</Nav.Link>
                     </Nav>
-                    <Nav.Link href="#home">LogIn</Nav.Link>
+                    <Nav.Link href="/login">LogIn</Nav.Link>
                     <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
                     <Button variant="outline-info">Search</Button>

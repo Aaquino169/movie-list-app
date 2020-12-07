@@ -25,6 +25,21 @@ users.post('/new', (req,res) => {
     })
 })
 
+//show list
+users.get("/userList", isAuthenticated, async (req,res) => {
+    try{
+        let currentUser = req.session.currentUser
+
+        let userData = await Users.findById(currentUser._id)
+
+        res.status(200).send(userData["Movie List"])
+
+    }catch(err){
+        res.status(400).json({ err: err.message})
+    }
+})
+
+
 //add to list
 users.put('/addToList/:imdbID', isAuthenticated, async (req,res) => {
     try {
@@ -77,5 +92,6 @@ users.put('/removeFromList/:imdbID', isAuthenticated, async (req,res) => {
         res.status(400).json({ err: err.message})
     }
 })
+
 
 module.exports = users
