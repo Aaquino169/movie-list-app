@@ -6,13 +6,13 @@ import MovieInfo from "../MovieInfo/index"
 
 
 
-export default class App  extends Component {
+export default class MovieHome  extends Component {
     constructor(props) {
         super(props)
 
         this.state ={
-        loading: true,
-        moviesList:[],
+            loading: true,
+            moviesList:[],
         }
     }
     
@@ -29,8 +29,6 @@ export default class App  extends Component {
             if(element.Poster === "N/A"){
                 element.Poster= "https://myerstest.com/wp-content/uploads/2017/07/NO-IMG-AVAILABLE.jpg"
             }
-
-            
             dataList.push(element)
         });
         console.log("dataList:", dataList)

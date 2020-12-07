@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from "../NavBar/index"
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+// import NavBar from "../NavBar/index"
+import {BrowserRouter as Router} from "react-router-dom"
 
-export default class App  extends Component {
+export default class MovieInfo  extends Component {
   constructor(props) {
     super(props)
 
@@ -33,35 +33,36 @@ export default class App  extends Component {
 //     })
 // }
 
-    displayInfo() {
-        return this.state.movie.map(movie => {
-            return (
-                <div>
-                    <p>Title{movie.Title}</p>
-                    <p>Year {movie.Year}</p>
-                    <p>Rated {movie.Rated}</p>
-                    <p>Released {movie.Released}</p>
-                    <p>Runtime {movie.Runtime}</p>
-                    <p>Genre {movie.Genre}</p>
-                    <p>Director {movie.Director}</p>
-                    <p>Writer {movie.Writer}</p>
-                    <p>Actors {movie.Actors}</p>
-                    <p>Awards {movie.Awards}</p>
-                    <img src={movie.Poster} alt="img"/>
-                    <p>Metascore {movie.Metascore}</p>
-                    <p>imdbRating {movie.imdbRating}</p>
-                    <p>Production {movie.Production}</p>
-                    <p>imdbVotes {movie.imdbVotes}</p>
-                </div>   
-            )
-        })
-    }
+    // displayInfo() {
+    //     return this.state.movie.map(movie => {
+    //         return (
+    //             <div>
+    //                 <p>Title{movie.Title}</p>
+    //                 <p>Year {movie.Year}</p>
+    //                 <p>Rated {movie.Rated}</p>
+    //                 <p>Released {movie.Released}</p>
+    //                 <p>Runtime {movie.Runtime}</p>
+    //                 <p>Genre {movie.Genre}</p>
+    //                 <p>Director {movie.Director}</p>
+    //                 <p>Writer {movie.Writer}</p>
+    //                 <p>Actors {movie.Actors}</p>
+    //                 <p>Awards {movie.Awards}</p>
+    //                 <img src={movie.Poster} alt="img"/>
+    //                 <p>Metascore {movie.Metascore}</p>
+    //                 <p>imdbRating {movie.imdbRating}</p>
+    //                 <p>Production {movie.Production}</p>
+    //                 <p>imdbVotes {movie.imdbVotes}</p>
+    //             </div>   
+    //         )
+    //     })
+    // }
 
+    // {this.displayInfo()}
   render() {
     return(
       <div>
         <Router>
-            {this.displayInfo()}
+            <p>info page</p>
         </Router>  
       </div>
     )

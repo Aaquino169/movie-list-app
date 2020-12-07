@@ -1,7 +1,8 @@
 import React, {Component} from "react";
+import "../src/App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css"
-import MovieList from "./Components/MovieList/index"
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
+import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar"
 
 export default class App  extends Component {
@@ -15,12 +16,16 @@ export default class App  extends Component {
 
   render() {
     return(
-      <div>
-        <NavBar/>
-        <div><MovieList search="Conjuring" title="Scary Movies"/></div>
-        <div><MovieList search="X-Men" title="Xmen Movies"/></div>
-        <div><MovieList search="harry potter" title="Harry Potter Series"/></div>        
-      </div>
+      <Router>
+        <div>
+          <NavBar/>
+          <Switch>
+            <Route path="/">
+              <HomeScreenDisplay/> 
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     )
   }
 
