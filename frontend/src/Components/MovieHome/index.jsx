@@ -12,14 +12,12 @@ export default class MovieHome  extends Component {
 
         this.state ={
             moviesList:[],
-            targetMovie:""
+            
         }
 
     }
 
-    componentDidUpdate(){
-        console.log(this.state.targetMovie)
-    }
+    
     
     async componentDidMount() {
         const url = "http://www.omdbapi.com/?"
@@ -43,7 +41,7 @@ export default class MovieHome  extends Component {
     }
 
     target = (movieID) => {
-        console.log("logged e:",movieID)
+        console.log("movieID in movie home:",movieID)
         this.props.targetMovieID(movieID)
     }
 

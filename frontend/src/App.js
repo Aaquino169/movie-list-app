@@ -15,30 +15,33 @@ export default class App  extends Component {
 
     this.state ={
       LoggedIn:null,
-      targetMovie:"empty"
+      targetMovie:""
     }
+    // this.targetMovieID.bind
   }
   
   componentDidUpdate(){
-    console.log("in app.js:",this.state.targetMovie)
-  }
-  targetMovieID = (movieID) => {
-    console.log("logged e:",movieID)
     
+    console.log("in app.js(cdu):",this.state.targetMovie)
+  }
+
+  
+  targetMovieID = (movieID) => {
     this.setState({
       targetMovie: movieID
     })
+
 }
 
   render() {
     
     return(
-      <Router>
+      <Router forceRefresh={true}>
         <div>
           <NavBar/>
           <Switch>
             <Route path="/movieInfo">
-              <MovieInfo id={this.state.targetMovie}/>
+              <MovieInfo movieID={this.state.targetMovie} />
             </Route>
             <Route path="/home">
               <HomeScreenDisplay targetMovieID={this.targetMovieID}/>

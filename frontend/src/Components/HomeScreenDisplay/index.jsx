@@ -7,7 +7,7 @@ export default class HomeScreenDisplay  extends Component {
     super()
 
     this.state ={
-      targetMovie: ""
+      
     }
   }
   

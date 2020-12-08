@@ -68,7 +68,7 @@ export default class NavBar  extends Component {
     // }
     
     render() {
-        console.log("state:",this.state.searchText)
+        // console.log("state:",this.state.searchText)
         return(
             <Router>
                     {
