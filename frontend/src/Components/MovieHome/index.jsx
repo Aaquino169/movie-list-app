@@ -12,7 +12,13 @@ export default class MovieHome  extends Component {
 
         this.state ={
             moviesList:[],
+            targetMovie:""
         }
+
+    }
+
+    componentDidUpdate(){
+        console.log(this.state.targetMovie)
     }
     
     async componentDidMount() {
@@ -36,15 +42,18 @@ export default class MovieHome  extends Component {
         })
     }
 
+    target = (movieID) => {
+        console.log("logged e:",movieID)
+        this.props.targetMovieID(movieID)
+    }
+
+
     list() {
         return this.state.moviesList.map(movie => {
             return (
                 <Card style={{ width: '18rem' }} className="bg-dark text-white movie-card" key={movie.imdbID}>
-                <Route path="/movieInfo">
-                    <MovieInfo id={movie.imdbID}/>
-                </Route>
                 <Link to="/movieInfo">
-                    <Card.Img variant="top" src={movie.Poster}/>
+                    <Card.Img variant="top" src={movie.Poster} onClick={() => (this.target(movie.imdbID))}/>
                 </Link>
                 <Card.Body>
                     <Card.Title>{movie.Title}</Card.Title>
@@ -56,7 +65,7 @@ export default class MovieHome  extends Component {
         })
     }
 
-
+    
     
 
     // I want to be able to render this: {this.state.moviesList[0].Title}
@@ -70,10 +79,12 @@ export default class MovieHome  extends Component {
 
         return(
             <div>
-                <h2>{this.props.title}</h2>
-                <div className= "card-container">
-                    {this.list()}
-                </div>
+                <Router>
+                    <h2>{this.props.title}</h2>
+                    <div className= "card-container">
+                        {this.list()}
+                    </div>
+                </Router>
             </div>
             
             
