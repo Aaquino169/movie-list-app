@@ -11,7 +11,6 @@ export default class MovieHome  extends Component {
         super(props)
 
         this.state ={
-            loading: true,
             moviesList:[],
         }
     }
@@ -71,12 +70,10 @@ export default class MovieHome  extends Component {
 
         return(
             <div>
-                <Router>
-                    <h2>{this.props.title}</h2>
-                    <div className= "card-container">
-                        {this.list()}
-                    </div>
-                </Router>
+                <h2>{this.props.title}</h2>
+                <div className= "card-container">
+                    {this.list()}
+                </div>
             </div>
             
             

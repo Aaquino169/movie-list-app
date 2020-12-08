@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import NavBar from "../NavBar/index"
 import {BrowserRouter as Router} from "react-router-dom"
 
 export default class MovieInfo  extends Component {
@@ -61,9 +60,7 @@ export default class MovieInfo  extends Component {
   render() {
     return(
       <div>
-        <Router>
-            <p>info page</p>
-        </Router>  
+        <h1>info page</h1>
       </div>
     )
   }

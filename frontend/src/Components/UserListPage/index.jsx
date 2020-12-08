@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {} from "react-bootstrap"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 
-export default class App  extends Component {
+export default class UserListPage  extends Component {
   constructor(props) {
     super(props)
 

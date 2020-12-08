@@ -5,13 +5,16 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar"
 import UserLogin from "./Components/UserLogin"
+import MovieInfo from "./Components/MovieInfo"
+
+
 
 export default class App  extends Component {
   constructor() {
     super()
 
     this.state ={
-      
+      LoggedIn:null
     }
   }
 
@@ -21,7 +24,7 @@ export default class App  extends Component {
         <div>
           <NavBar/>
           <Switch>
-            <Route path="/" component={HomeScreenDisplay}/>
+            <Route path="/home" component={HomeScreenDisplay}/>
             <Route path="/login" component={UserLogin}/>
           </Switch>
         </div>

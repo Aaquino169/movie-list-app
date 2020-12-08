@@ -9,7 +9,9 @@ export default class NavBar  extends Component {
 
         this.state ={
             searchText:"",
-            searchData:[]
+            searchData:[],
+            LoggedIn: false
+
         }
     }
     handleChange = (e) => {
@@ -69,18 +71,42 @@ export default class NavBar  extends Component {
         console.log("state:",this.state.searchText)
         return(
             <Router>
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="/">MyMovieList</Navbar.Brand>
-                    <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="#features">My List</Nav.Link>
-                    </Nav>
-                    <Nav.Link href="/login">LogIn</Nav.Link>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
-                    <Button variant="outline-info">Search</Button>
-                    </Form>
-                </Navbar>
+                    {
+                        this.state.LoggedIn
+                        ?
+                        <div>
+                            <Navbar bg="dark" variant="dark">
+                            <Navbar.Brand href="/">MyMovieList</Navbar.Brand>
+                            <Nav className="mr-auto">
+                            <Nav.Link href="/home">Home</Nav.Link>
+                            <Nav.Link href="#features">My List</Nav.Link>
+                            </Nav>
+                            <Nav.Link href="/login">Log Out</Nav.Link>
+                            <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
+                            <Button variant="outline-info">Search</Button>
+                            </Form>
+                            </Navbar>
+                        </div>
+                        :
+                        <div>
+                            <Navbar bg="dark" variant="dark">
+                            <Navbar.Brand href="/">MyMovieList</Navbar.Brand>
+                            <Nav className="mr-auto">
+                            <Nav.Link href="/home">Home</Nav.Link>
+                            </Nav>
+                            <Nav.Link href="/login">Login</Nav.Link>
+
+                            <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
+                            <Button variant="outline-info">Search</Button>
+                            </Form> 
+                            </Navbar>
+
+                        </div>
+                        
+                    }
+                    
             </Router>
         )
     }
