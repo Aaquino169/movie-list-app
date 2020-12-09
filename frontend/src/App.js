@@ -14,7 +14,8 @@ export default class App  extends Component {
     super()
 
     this.state ={
-      LoggedIn:null,
+      LoggedIn:false,
+      loggedInUsername:"",
       targetMovie:""
     }
     // this.targetMovieID.bind
@@ -31,7 +32,91 @@ export default class App  extends Component {
       targetMovie: movieID
     })
 
-}
+  }
+
+  newUser = async (registerInfo) => {
+
+    const url = 'http://localhost:8000/user/new'
+  
+    try {
+        const registerResponse = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(registerInfo),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+      })
+      console.log("registerResponse", registerResponse);
+      const registerJson = await registerResponse.json()
+      console.log("registerJson", registerJson);
+  
+       if(registerResponse.status === 201) {
+         this.setState({
+           loggedIn: true,
+           loggedInUsername: registerJson.data.username
+         })
+       }
+    } catch(err) {
+      console.error("Error trying to register with API")
+      console.error(err)
+    }
+  }
+
+  userlogin = async (loginInfo) => {
+    const url = 'http://localhost:8000/login'
+  
+    try {
+      const loginResponse = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(loginInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log("loginResponse", loginResponse);
+      const loginJson = await loginResponse.json()
+      console.log("loginJson", loginJson);
+      console.log(loginJson.cart)
+  
+      if(loginResponse.status === 200) {
+          this.setState({
+            loggedIn: true,
+            loggedInUsername: loginJson.username,
+            id: loginJson._id,
+            cart: loginJson.cart
+        })
+        }
+    } catch(error) {
+      console.error("Error trying to log in")
+      console.error(error)
+    }
+  }
+  
+  userlogout = async () => {
+    try {
+      const url = ''
+  
+      const logoutResponse = await fetch(url, {
+        credentials: 'include'
+      })
+      console.log("logoutResponse", logoutResponse);
+      const logoutJson = await logoutResponse.json()
+      console.log("logoutJson", logoutJson);
+  
+      if(logoutResponse.status === 200) {
+        this.setState({
+          loggedIn: false,
+          loggedInUsername: ''
+        })
+  
+      }
+  
+    } catch(error) {
+      console.error("Error logging out")
+      console.error(error)
+    }
+  }
+
 
   render() {
     
@@ -45,8 +130,10 @@ export default class App  extends Component {
             </Route>
             <Route path="/home">
               <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
+            </Route>
+            <Route path="/login">
+              <UserLogin newUser={this.newUser} userlogin={this.userlogin} userlogout={this.userlogout} />
             </Route> 
-            <Route path="/login" component={UserLogin}/>
           </Switch>
         </div>
       </Router>

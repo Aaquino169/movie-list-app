@@ -17,7 +17,12 @@ export default class LogIn extends Component {
           <Router>
           <div>
             <Switch>
-              <Route path="/login" component={LoginUser}/>
+            <Route path="/login">
+              <LoginUser userLogin={this.props.userLogin} />
+            </Route>
+            <Route path="/newUserLogin">
+              <NewUserLogin newUser={this.props.newUser} />
+            </Route>
               <Route path="/newUserLogin" component={NewUserLogin}/>
             </Switch>
           </div>
