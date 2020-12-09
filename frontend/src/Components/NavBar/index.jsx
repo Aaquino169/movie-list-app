@@ -6,11 +6,11 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 export default class NavBar  extends Component {
     constructor(props) {
         super(props)
-
+        console.log("props info page:", props)
         this.state ={
             searchText:"",
             searchData:[],
-            loggedIn: props.loginStatus
+            loggedIn: props.loggedIn
 
         }
     }
@@ -70,44 +70,25 @@ export default class NavBar  extends Component {
     render() {
         
         return(
-            <Router>
-                    {
-                        this.state.loggedIn
-                        ?
-                        <div>
+            <div>
+                    
+                    
                             <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="/">MyMovieList</Navbar.Brand>
+                            <Navbar.Brand href="/home">MyMovieList</Navbar.Brand>
                             <Nav className="mr-auto">
                             <Nav.Link href="/home">Home</Nav.Link>
-                            <Nav.Link href="#features">My List</Nav.Link>
+                            <Nav.Link href="/myList">My List</Nav.Link>
                             </Nav>
-                            <Nav.Link href="/login">Log Out</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link onClick={this.props.userLogout}>Log Out</Nav.Link>
                             <Form inline>
                             <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
                             <Button variant="outline-info">Search</Button>
                             </Form>
                             </Navbar>
-                        </div>
-                        :
-                        <div>
-                            <Navbar bg="dark" variant="dark">
-                            <Navbar.Brand href="/">MyMovieList</Navbar.Brand>
-                            <Nav className="mr-auto">
-                            <Nav.Link href="/home">Home</Nav.Link>
-                            </Nav>
-                            <Nav.Link href="/login">Login</Nav.Link>
-
-                            <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange}/>
-                            <Button variant="outline-info">Search</Button>
-                            </Form> 
-                            </Navbar>
-
-                        </div>
                         
-                    }
                     
-            </Router>
+            </div>
         )
     }
 }

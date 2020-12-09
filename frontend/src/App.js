@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import "../src/App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
+import {Switch, Route, Redirect} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
-import NavBar from "./Components/NavBar"
-import UserLogin from "./Components/UserLogin"
-import MovieInfo from "./Components/MovieInfo"
+import NavBar from "./Components/NavBar/index"
+import UserLogin from "./Components/UserLogin/index"
+import MovieInfo from "./Components/MovieInfo/index"
+import UserListPage from "./Components/UserListPage/index"
 
 
 
@@ -14,16 +15,16 @@ export default class App  extends Component {
     super(props)
 
     this.state ={
-      loggedIn:true,
+      loggedIn:false,
       loggedInUsername:"",
       targetMovie:""
     }
-    // this.targetMovieID.bind
   }
   
   componentDidUpdate(){
     
-    console.log("in app.js(cdu):",this.state.targetMovie)
+    console.log("state in app.js:",this.state)
+
   }
 
   
@@ -34,11 +35,11 @@ export default class App  extends Component {
 
   }
 
-  checkLoginStatus = (boolean) => {
-    this.setState({
-      loggedIn: boolean
-    })
-  }
+  // checkLoginStatus = (boolean) => {
+  //   this.setState({
+  //     loggedIn: boolean
+  //   })
+  // }
 
   newUser = async (registerInfo) => {
 
@@ -68,29 +69,33 @@ export default class App  extends Component {
     }
   }
 
+
   userLogin = async (loginInfo) => {
     const url = 'http://localhost:8000/login'
   
     try {
       const loginResponse = await fetch(url, {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify(loginInfo),
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      console.log("loginResponse", loginResponse);
+      console.log("loginResponse:", loginResponse);
       const loginJson = await loginResponse.json()
-      console.log("loginJson", loginJson);
-      console.log(loginJson.cart)
+      console.log("loginJson:", loginJson);
   
       if(loginResponse.status === 200) {
+          console.log("im logged in")
+          
+          // this.changeValue({loggedIn:true})
           this.setState({
             loggedIn: true,
-            loggedInUsername: loginJson.username,
-            id: loginJson._id,
-            cart: loginJson.cart
-        })
+            
+          })
+        console.log("state in app.js:",this.state)
+
         }
     } catch(error) {
       console.error("Error trying to log in")
@@ -100,7 +105,7 @@ export default class App  extends Component {
   
   userLogout = async () => {
     try {
-      const url = ''
+      const url = "http://localhost:8000/login/logout"
   
       const logoutResponse = await fetch(url, {
         credentials: 'include'
@@ -112,7 +117,6 @@ export default class App  extends Component {
       if(logoutResponse.status === 200) {
         this.setState({
           loggedIn: false,
-          loggedInUsername: ''
         })
   
       }
@@ -123,7 +127,12 @@ export default class App  extends Component {
     }
   }
 
+  changeValue = (value) => {
+    this.setState(value)
+  }
+
   render() {
+    console.log("state in app.js:",this.state)
     if(this.state.targetMovie) {
       return(
         <Redirect to={"/movieInfo/"+ this.state.targetMovie}/>
@@ -131,8 +140,18 @@ export default class App  extends Component {
     }
     return(
         <div>
-            <NavBar loginStatus={this.state.loggedIn}/>
+            {
+              this.state.loggedIn
+              ?
+              <NavBar loggedIn={this.state.loggedIn} userLogout={this.userLogout}/>
+              :
+              <NavBar/>
+            }
+            
             <Switch>
+              <Route path="/myList">
+                <UserListPage/>
+              </Route>
               <Route path="/movieInfo/:id">
                 <MovieInfo movieID={this.state.targetMovie} />
               </Route>
@@ -140,7 +159,7 @@ export default class App  extends Component {
                 <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
               </Route>
               <Route path="/login">
-                <UserLogin checkLoginStatus={this.checkLoginStatus} newUser={this.newUser} userLogin={this.userLogin} userLogout={this.userLogout} />
+                <UserLogin checkLoginStatus={this.checkLoginStatus} newUser={this.newUser} userLogin={this.userLogin} />
               </Route> 
             </Switch>
         </div>

@@ -35,14 +35,14 @@ export default class NewUserLogin extends Component {
        }
 
     render() {
-        if(this.state.newUserCreated){
-            this.setState({
-                newUserCreated: false
-            })
-            return(
-                <Redirect to="/login"/>
-            )
-        }
+        // if(this.state.newUserCreated){
+        //     this.setState({
+        //         newUserCreated: false
+        //     })
+        //     return(
+        //         <Redirect to="/login"/>
+        //     )
+        // }
         return(
             <div>
                 <h1>Register New User</h1>

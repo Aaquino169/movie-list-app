@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import {BrowserRouter as Router,Link} from "react-router-dom"
-import MovieInfo from "../MovieInfo/index"
 
 
 

@@ -21,9 +21,7 @@ export default class LogUser extends Component {
     }
       
     handleSubmit = (event) => {
-        event.preventDefault()
-        console.log()
-        console.log("state in userLogin:",this.state);
+        event.preventDefault();
         const userCredentials = {
             username: this.state.username,
             password: this.state.password

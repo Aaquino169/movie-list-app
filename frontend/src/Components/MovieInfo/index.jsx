@@ -47,13 +47,15 @@ class MovieInfo  extends Component {
         method: "PUT",
         headers:{
           'Content-Type': 'application/json'
-      },
+        },
+        credentials:"include"
+      
     })
     console.log("movieToAddResponse:",movieToAddResponse)
     const movieToAdd = await  movieToAddResponse.json()
     console.log(movieToAdd)
     }catch(err){
-      console.log("errw occured while adding to user list:",err)
+      console.log("err occured while adding to user list:",err)
     }
   }
 
@@ -62,6 +64,7 @@ class MovieInfo  extends Component {
     return(
       <div>
         <p>info page</p>
+        <img src={this.state.movie.Poster} alt="img"/>
         <p>Title{this.state.movie.Title}</p>
         <p>Year {this.state.movie.Year}</p>
         <p>Rated {this.state.movie.Rated}</p>
@@ -72,7 +75,6 @@ class MovieInfo  extends Component {
         <p>Writer {this.state.movie.Writer}</p>
         <p>Actors {this.state.movie.Actors}</p>
         <p>Awards {this.state.movie.Awards}</p>
-        <img src={this.state.movie.Poster} alt="img"/>
         <p>Metascore {this.state.movie.Metascore}</p>
         <p>imdbRating {this.state.movie.imdbRating}</p>
         <p>Production {this.state.movie.Production}</p>

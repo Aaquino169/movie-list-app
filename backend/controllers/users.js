@@ -20,7 +20,7 @@ users.post('/new', (req,res) => {
         if(err){
             res.status(400).json({ err: err.message})
         }
-        console.log('User Created:', createdUser )
+        console.log('User Created:', createdUser)
         res.status(200).send(createdUser)
     })
 })
@@ -48,16 +48,17 @@ users.put('/addToList/:imdbID',isAuthenticated, async (req,res) => {
         const imdbID = "&i="+ req.params.imdbID
         const type = "&type=movie"
         const response = await fetch(url+apiKey+imdbID+type);
+        console.log(response)
         const data = await response.json()
-
+        console.log(data)
 
         let currentUser = req.session.currentUser
-
+        console.log("currentUser:",currentUser)
         let userData = await Users.findById(currentUser._id)
-
+        console.log("userData:",userData)
         userData["Movie List"].push(data)
 
-        console.log(userData)
+        console.log("userData update:",userData)
 
         userData.save()
 
