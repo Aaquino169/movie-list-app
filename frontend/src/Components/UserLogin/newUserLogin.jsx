@@ -42,10 +42,10 @@ export default class NewUserLogin extends Component {
                         </Form.Group>
                         <Link to="/Login">
                             <p>Already have an Account?</p>
+                        </Link>
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
-                        </Link>
                     </Form>
             </div>
         )

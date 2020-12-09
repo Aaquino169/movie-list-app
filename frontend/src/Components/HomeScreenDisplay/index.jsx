@@ -3,18 +3,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MovieHome from "../MovieHome/index"
 
 export default class HomeScreenDisplay  extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state ={
-      
+      targetMovie:""
     }
   }
+
   
 
 
 
   render() {
+    // if(this.state.targetMovie) {
+    //   return(
+    //     <Redirect to={"/movieInfo/"+ this.state.targetMovie}/>
+    //   )
+    // }
     return(
       <div>        
         <div><MovieHome targetMovieID={this.props.targetMovieID} search="Conjuring" title="Scary Movies"/></div>

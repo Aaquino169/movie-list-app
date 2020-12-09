@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
+import {BrowserRouter as Router,Link} from "react-router-dom"
 import MovieInfo from "../MovieInfo/index"
 
 
@@ -50,7 +50,7 @@ export default class MovieHome  extends Component {
         return this.state.moviesList.map(movie => {
             return (
                 <Card style={{ width: '18rem' }} className="bg-dark text-white movie-card" key={movie.imdbID}>
-                <Link to="/movieInfo">
+                <Link to={"/movieInfo/"+ movie.imdbID}>
                     <Card.Img variant="top" src={movie.Poster} onClick={() => (this.target(movie.imdbID))}/>
                 </Link>
                 <Card.Body>

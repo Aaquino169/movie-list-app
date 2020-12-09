@@ -1,14 +1,14 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router} from "react-router-dom"
-
-export default class MovieInfo  extends Component {
+import {withRouter} from "react-router-dom"
+class MovieInfo  extends Component {
   constructor(props) {
     super(props)
+    console.log("props:",props)
 
     this.state ={
       movie:{},
-      movieID: ""
+      movieID: props.match.params.id
     }
   }
   componentDidUpdate(){
@@ -17,14 +17,12 @@ export default class MovieInfo  extends Component {
   }
 
   async componentDidMount() {
-    // this.setState({
-    //   movieID: this.props.movieID
-    // })
-
+    
+    console.log("match:",this.props.match)
     console.log("prop in info component:", this.props.movieID)
     const url = "http://www.omdbapi.com/?"
     const apiKey = "&apikey=111970bd"
-    const id = "&i="+ this.props.movieID
+    const id = "&i="+ this.state.movieID
     const type = "&type=movie"
     console.log(url+apiKey+id+type)
 
@@ -65,3 +63,5 @@ export default class MovieInfo  extends Component {
 
 
 }
+
+export default withRouter(MovieInfo)

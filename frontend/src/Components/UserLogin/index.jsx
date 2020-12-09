@@ -5,11 +5,10 @@ import NewUserLogin from "../UserLogin/newUserLogin"
 
 export default class LogIn extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
 
         }
-
     }
 
     render() {

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "../src/App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar"
 import UserLogin from "./Components/UserLogin"
@@ -10,11 +10,11 @@ import MovieInfo from "./Components/MovieInfo"
 
 
 export default class App  extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state ={
-      LoggedIn:false,
+      loggedIn:true,
       loggedInUsername:"",
       targetMovie:""
     }
@@ -62,7 +62,7 @@ export default class App  extends Component {
     }
   }
 
-  userlogin = async (loginInfo) => {
+  userLogin = async (loginInfo) => {
     const url = 'http://localhost:8000/login'
   
     try {
@@ -92,7 +92,7 @@ export default class App  extends Component {
     }
   }
   
-  userlogout = async () => {
+  userLogout = async () => {
     try {
       const url = ''
   
@@ -117,26 +117,28 @@ export default class App  extends Component {
     }
   }
 
-
+//removed from line 132 movieID={this.state.targetMovie} 
   render() {
-    
+    if(this.state.targetMovie) {
+      return(
+        <Redirect to={"/movieInfo/"+ this.state.targetMovie}/>
+      )
+    }
     return(
-      <Router forceRefresh={true}>
         <div>
-          <NavBar/>
-          <Switch>
-            <Route path="/movieInfo">
-              <MovieInfo movieID={this.state.targetMovie} />
-            </Route>
-            <Route path="/home">
-              <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
-            </Route>
-            <Route path="/login">
-              <UserLogin newUser={this.newUser} userlogin={this.userlogin} userlogout={this.userlogout} />
-            </Route> 
-          </Switch>
+            <NavBar/>
+            <Switch>
+              <Route path="/movieInfo/:id">
+                <MovieInfo movieID={this.state.targetMovie} />
+              </Route>
+              <Route path="/home">
+                <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
+              </Route>
+              <Route path="/login">
+                <UserLogin newUser={this.newUser} userLogin={this.userLogin} userLogout={this.userLogout} />
+              </Route> 
+            </Switch>
         </div>
-      </Router>
     )
   }
 
