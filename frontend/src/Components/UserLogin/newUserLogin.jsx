@@ -1,6 +1,6 @@
 import React,{ Component } from "react"
 import {Form, Button} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
 
 export default class NewUserLogin extends Component {
@@ -8,7 +8,8 @@ export default class NewUserLogin extends Component {
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            newUserCreated:false
         }
 
     }
@@ -23,10 +24,25 @@ export default class NewUserLogin extends Component {
         event.preventDefault()
         console.log()
         console.log("state in new user:",this.state);
-        this.props.newUser(this.state)
+        const userCredentials = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.newUser(userCredentials)
+        this.setState({
+            newUserCreated: true
+        })
        }
 
     render() {
+        if(this.state.newUserCreated){
+            this.setState({
+                newUserCreated: false
+            })
+            return(
+                <Redirect to="/login"/>
+            )
+        }
         return(
             <div>
                 <h1>Register New User</h1>

@@ -15,7 +15,10 @@ sessions.post('/', (req,res) => {
         }else{
             if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 req.session.currentUser = foundUser
+                console.log('logged in as:', req.session.currentUser )
+
                 res.status(200).send(req.session.currentUser)
+
                 //can redirect to home page while staying logged in?
             } else if(err) {
                 res.status(400).json({ err: err.message})

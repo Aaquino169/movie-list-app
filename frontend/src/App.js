@@ -34,6 +34,12 @@ export default class App  extends Component {
 
   }
 
+  checkLoginStatus = (boolean) => {
+    this.setState({
+      loggedIn: boolean
+    })
+  }
+
   newUser = async (registerInfo) => {
 
     const url = 'http://localhost:8000/user/new'
@@ -117,7 +123,6 @@ export default class App  extends Component {
     }
   }
 
-//removed from line 132 movieID={this.state.targetMovie} 
   render() {
     if(this.state.targetMovie) {
       return(
@@ -126,7 +131,7 @@ export default class App  extends Component {
     }
     return(
         <div>
-            <NavBar/>
+            <NavBar loginStatus={this.state.loggedIn}/>
             <Switch>
               <Route path="/movieInfo/:id">
                 <MovieInfo movieID={this.state.targetMovie} />
@@ -135,7 +140,7 @@ export default class App  extends Component {
                 <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
               </Route>
               <Route path="/login">
-                <UserLogin newUser={this.newUser} userLogin={this.userLogin} userLogout={this.userLogout} />
+                <UserLogin checkLoginStatus={this.checkLoginStatus} newUser={this.newUser} userLogin={this.userLogin} userLogout={this.userLogout} />
               </Route> 
             </Switch>
         </div>

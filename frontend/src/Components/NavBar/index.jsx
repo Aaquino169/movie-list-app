@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Nav, Navbar, Form, FormControl, Button} from "react-bootstrap"
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
 
 
 export default class NavBar  extends Component {
@@ -10,7 +10,7 @@ export default class NavBar  extends Component {
         this.state ={
             searchText:"",
             searchData:[],
-            LoggedIn: false
+            loggedIn: props.loginStatus
 
         }
     }
@@ -68,11 +68,11 @@ export default class NavBar  extends Component {
     // }
     
     render() {
-        // console.log("state:",this.state.searchText)
+        
         return(
             <Router>
                     {
-                        this.state.LoggedIn
+                        this.state.loggedIn
                         ?
                         <div>
                             <Navbar bg="dark" variant="dark">

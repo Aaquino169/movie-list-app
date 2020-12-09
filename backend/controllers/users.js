@@ -41,7 +41,7 @@ users.get("/userList", isAuthenticated, async (req,res) => {
 
 
 //add to list
-users.put('/addToList/:imdbID', isAuthenticated, async (req,res) => {
+users.put('/addToList/:imdbID',isAuthenticated, async (req,res) => {
     try {
         const url = "http://www.omdbapi.com/?"
         const apiKey = "&apikey=111970bd"

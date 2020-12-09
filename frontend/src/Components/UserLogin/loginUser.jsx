@@ -1,13 +1,15 @@
 import React,{ Component } from "react"
 import {Form, Button} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link , Redirect} from "react-router-dom"
+import HomeScreenDisplay from "../HomeScreenDisplay"
 
 export default class LogUser extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            loggedIn: false
         }
 
     }
@@ -16,16 +18,32 @@ export default class LogUser extends Component {
         this.setState({
           [event.target.name]: event.target.value
         })
-      }
+    }
       
-      handleSubmit = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault()
         console.log()
         console.log("state in userLogin:",this.state);
-        this.props.userLogin(this.state)
-       }
+        const userCredentials = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.userLogin(userCredentials)
+        this.setState({
+            loggedIn: true
+        })
+    }
+       
 
     render() {
+        // if(this.state.loggedIn){
+        //     this.setState({
+        //         loggedIn: false
+        //     })
+        //     return(
+        //         <Redirect to="/home" Component={HomeScreenDisplay}/>
+        //     )
+        // }
         return(
             <div>
                 <h1>User Log In</h1>

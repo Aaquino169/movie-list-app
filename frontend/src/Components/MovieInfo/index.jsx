@@ -1,18 +1,19 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {withRouter} from "react-router-dom"
+import {Button} from "react-bootstrap"
 class MovieInfo  extends Component {
   constructor(props) {
     super(props)
     console.log("props:",props)
 
-    this.state ={
+    this.state = {
       movie:{},
       movieID: props.match.params.id
     }
   }
   componentDidUpdate(){
-    console.log("state in info page:",this.state.movieID)
+    console.log("state in info page:",this.state.movie)
     console.log("props in info page:",this.props.movieID)
   }
 
@@ -35,7 +36,26 @@ class MovieInfo  extends Component {
     this.setState({
       movie: data
     })
-}
+
+  }
+
+  addToList = async () => {
+    const url = `http://localhost:8000/user/addToList/${this.state.movie.imdbID}`
+    console.log(url)
+    try{
+      const movieToAddResponse = await fetch(url,{
+        method: "PUT",
+        headers:{
+          'Content-Type': 'application/json'
+      },
+    })
+    console.log("movieToAddResponse:",movieToAddResponse)
+    const movieToAdd = await  movieToAddResponse.json()
+    console.log(movieToAdd)
+    }catch(err){
+      console.log("errw occured while adding to user list:",err)
+    }
+  }
 
 
   render() {
@@ -57,6 +77,7 @@ class MovieInfo  extends Component {
         <p>imdbRating {this.state.movie.imdbRating}</p>
         <p>Production {this.state.movie.Production}</p>
         <p>imdbVotes {this.state.movie.imdbVotes}</p>
+        <Button onClick={this.addToList}>Add to favorites</Button>
       </div>
     )
   }

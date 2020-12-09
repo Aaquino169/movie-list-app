@@ -5,10 +5,7 @@ import NewUserLogin from "../UserLogin/newUserLogin"
 
 export default class LogIn extends Component {
     constructor(props) {
-        super(props)
-        this.state = {
-
-        }
+      super(props)
     }
 
     render() {
@@ -17,7 +14,7 @@ export default class LogIn extends Component {
           <div>
             <Switch>
             <Route path="/login">
-              <LoginUser userLogin={this.props.userLogin} />
+              <LoginUser checkLoginStatus={this.props.checkLoginStatus} userLogin={this.props.userLogin} />
             </Route>
             <Route path="/newUserLogin">
               <NewUserLogin newUser={this.props.newUser} />

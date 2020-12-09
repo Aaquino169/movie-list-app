@@ -5,10 +5,6 @@ import MovieHome from "../MovieHome/index"
 export default class HomeScreenDisplay  extends Component {
   constructor(props) {
     super(props)
-
-    this.state ={
-      targetMovie:""
-    }
   }
 
   
@@ -24,8 +20,8 @@ export default class HomeScreenDisplay  extends Component {
     return(
       <div>        
         <div><MovieHome targetMovieID={this.props.targetMovieID} search="Conjuring" title="Scary Movies"/></div>
-        <div><MovieHome search="X-Men" title="Xmen Movies"/></div>
-        <div><MovieHome search="harry potter" title="Harry Potter Series"/></div>        
+        <div><MovieHome targetMovieID={this.props.targetMovieID} search="X-Men" title="Xmen Movies"/></div>
+        <div><MovieHome targetMovieID={this.props.targetMovieID} search="harry potter" title="Harry Potter Series"/></div>        
       </div>
     )
   }
