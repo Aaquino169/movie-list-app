@@ -11,6 +11,20 @@ const mongodbURI = process.env.MONGODBURI
 
 app.use(bodyParser.json());
 
+//cors middleware
+const whitelist = ["http://localhost:3000"]
+const corsOptions = {
+    origin: (origin, callback) => {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }, credentials: true
+}
+
+app.use(cors(corsOptions))
+
 //middleware for mongoose
 mongoose.connect(mongodbURI, { useNewUrlParser:true })
 mongoose.connection.once('open', () => {
