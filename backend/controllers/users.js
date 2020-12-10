@@ -44,7 +44,7 @@ users.get("/userList", isAuthenticated, async (req,res) => {
 users.put('/addToList/:imdbID',isAuthenticated, async (req,res) => {
     try {
         const url = "http://www.omdbapi.com/?"
-        const apiKey = "&apikey=111970bd"
+        const apiKey = "&apikey=" + process.env.APIKEY
         const imdbID = "&i="+ req.params.imdbID
         const type = "&type=movie"
         const response = await fetch(url+apiKey+imdbID+type);

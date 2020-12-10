@@ -12,7 +12,7 @@ const mongodbURI = process.env.MONGODBURI
 app.use(bodyParser.json());
 
 //cors middleware
-const whitelist = ["http://localhost:3000"]
+const whitelist = [process.env.FRONTEND]
 const corsOptions = {
     origin: (origin, callback) => {
       if (whitelist.indexOf(origin) !== -1) {
