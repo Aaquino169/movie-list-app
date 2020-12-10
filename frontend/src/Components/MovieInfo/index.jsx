@@ -61,18 +61,6 @@ class MovieInfo  extends Component {
     }
   }
 
-  // displayRatings () {
-  //   return this.state.movie.Ratings.map(element => {
-  //     return(
-  //       <div>
-  //         <p>element.Source</p>
-  //         <p>element.Value</p>
-  //       </div>
-  //     )
-  //     console.log(element)
-  //   })
-  // }
-
   render() {
     
     return(

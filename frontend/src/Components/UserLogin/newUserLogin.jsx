@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 export default class NewUserLogin extends Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
             username: '',
             password: '',
@@ -35,14 +35,7 @@ export default class NewUserLogin extends Component {
        }
 
     render() {
-        // if(this.state.newUserCreated){
-        //     this.setState({
-        //         newUserCreated: false
-        //     })
-        //     return(
-        //         <Redirect to="/login"/>
-        //     )
-        // }
+
         return(
             <div>
                 <h1>Register New User</h1>

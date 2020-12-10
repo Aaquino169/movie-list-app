@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {withRouter, Link} from "react-router-dom"
-import {ListGroup, Button} from "react-bootstrap"
+import {ListGroup} from "react-bootstrap"
 
 
 class SearchResults  extends Component {

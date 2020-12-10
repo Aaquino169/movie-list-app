@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ListGroup, Button} from "react-bootstrap"
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 export default class UserListPage  extends Component {
   constructor(props) {

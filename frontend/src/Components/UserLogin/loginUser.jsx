@@ -1,7 +1,6 @@
 import React,{ Component } from "react"
 import {Form, Button} from "react-bootstrap"
-import { Link , Redirect} from "react-router-dom"
-import HomeScreenDisplay from "../HomeScreenDisplay"
+import { Link } from "react-router-dom"
 
 export default class LogUser extends Component {
     constructor(props) {

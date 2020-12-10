@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "../src/App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Switch, Route, Redirect, Router} from "react-router-dom"
+import {Switch, Route, Redirect} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar/index"
 import UserLogin from "./Components/UserLogin/index"
@@ -24,9 +24,7 @@ export default class App  extends Component {
   }
   
   componentDidUpdate(){
-    
     console.log("state in app.js:",this.state)
-
   }
 
   
@@ -45,7 +43,7 @@ export default class App  extends Component {
 
   newUser = async (registerInfo) => {
 
-    const url = 'http://localhost:8000/user/new'
+    const url = process.env.REACT_APP_API_URL +'/user/new'
   
     try {
         const registerResponse = await fetch(url, {
@@ -74,7 +72,8 @@ export default class App  extends Component {
 
 
   userLogin = async (loginInfo) => {
-    const url = 'http://localhost:8000/login'
+    console.log(process.env.REACT_APP_API_URL)
+    const url =  process.env.REACT_APP_API_URL + '/login'
   
     try {
       const loginResponse = await fetch(url, {

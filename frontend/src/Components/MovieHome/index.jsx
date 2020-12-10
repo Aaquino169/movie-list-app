@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Card from "react-bootstrap/Card"
-import {BrowserRouter as Router,Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
 
@@ -59,16 +59,6 @@ export default class MovieHome  extends Component {
             )
         })
     }
-
-    
-    
-
-    // I want to be able to render this: {this.state.moviesList[0].Title}
-    // console.log(this.state.moviesList[0].Title)
-    //  <img src={this.state.moviesList[0].Poster} alt=""/>
-    //                <p>{this.state.moviesList[0]}</p>
-
-
 
     render() {
 
