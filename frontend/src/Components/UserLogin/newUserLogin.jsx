@@ -35,7 +35,6 @@ export default class NewUserLogin extends Component {
        }
 
     render() {
-
         return(
             <div>
                 <h1>Register New User</h1>
@@ -49,7 +48,7 @@ export default class NewUserLogin extends Component {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                         </Form.Group>
-                        <Link to="/Login">
+                        <Link to="/userLogin">
                             <p>Already have an Account?</p>
                         </Link>
                         <Button variant="primary" type="submit">

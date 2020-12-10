@@ -19,13 +19,14 @@ export default class MovieHome  extends Component {
     
     async componentDidMount() {
         const url = "http://www.omdbapi.com/?"
-        const apiKey = "&apikey=111970bd"
+        const apiKey = "&apikey=" + process.env.REACT_APP_APIKEY
         const search = "&s="+ this.props.search
         const type = "&type=movie"
-
+        console.log(apiKey)
         const response = await fetch(url+apiKey+type+search);
         const data = await response.json()
         const dataList = []
+        console.log(url)
         data.Search.forEach(element => {
             if(element.Poster === "N/A"){
                 element.Poster= "https://myerstest.com/wp-content/uploads/2017/07/NO-IMG-AVAILABLE.jpg"

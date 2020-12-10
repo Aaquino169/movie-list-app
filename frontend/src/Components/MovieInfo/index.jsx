@@ -22,7 +22,7 @@ class MovieInfo  extends Component {
     console.log("match:",this.props.match)
     console.log("prop in info component:", this.props.movieID)
     const url = "http://www.omdbapi.com/?"
-    const apiKey = "&apikey=111970bd"
+    const apiKey = "&apikey=" + process.env.REACT_APP_APIKEY
     const id = "&i="+ this.state.movieID
     const type = "&type=movie"
     console.log(url+apiKey+id+type)
@@ -40,7 +40,7 @@ class MovieInfo  extends Component {
   }
 
   addToList = async () => {
-    const url = `http://localhost:8000/user/addToList/${this.state.movie.imdbID}`
+    const url = process.env.REACT_APP_API_URL + `/user/addToList/${this.state.movie.imdbID}`
     console.log(url)
     try{
       const movieToAddResponse = await fetch(url,{

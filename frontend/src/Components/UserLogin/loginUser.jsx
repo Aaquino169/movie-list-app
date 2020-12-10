@@ -33,14 +33,7 @@ export default class LogUser extends Component {
        
 
     render() {
-        // if(this.state.loggedIn){
-        //     this.setState({
-        //         loggedIn: false
-        //     })
-        //     return(
-        //         <Redirect to="/home" Component={HomeScreenDisplay}/>
-        //     )
-        // }
+
         return(
             <div>
                 <h1>User Log In</h1>

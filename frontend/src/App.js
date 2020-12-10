@@ -25,6 +25,8 @@ export default class App  extends Component {
   
   componentDidUpdate(){
     console.log("state in app.js:",this.state)
+    console.log("url:",process.env.REACT_APP_API_URL)
+    console.log("hello")
   }
 
   
@@ -115,9 +117,10 @@ export default class App  extends Component {
   
   userLogout = async () => {
     try {
-      const url = "http://localhost:8000/login/logout"
+      const url = process.env.REACT_APP_API_URL + "/login/logout"
   
       const logoutResponse = await fetch(url, {
+        method: "DELETE",
         credentials: 'include'
       })
       console.log("logoutResponse", logoutResponse);
@@ -143,7 +146,6 @@ export default class App  extends Component {
   }
 
   render() {
-    console.log("state in app.js:",this.state)
     if(this.state.targetMovie) {
       return(
         <Redirect to={"/movieInfo/"+ this.state.targetMovie}/>
@@ -165,7 +167,7 @@ export default class App  extends Component {
               <Route path="/home">
                 <HomeScreenDisplay targetMovieID={this.targetMovieID}/>
               </Route>
-              <Route path="/login">
+              <Route path="/userLogin">
                 <UserLogin checkLoginStatus={this.checkLoginStatus} newUser={this.newUser} userLogin={this.userLogin} />
               </Route> 
             </Switch>

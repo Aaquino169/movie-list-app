@@ -26,29 +26,6 @@ export default class NavBar  extends Component {
             search: true
         })
     }
-
-    // async componentDidMount() {
-    //     const url = "http://www.omdbapi.com/?i=tt3896198"
-    //     const apiKey = "&apikey=111970bd"
-    //     const search = "&s="+ this.props.search
-    //     const type = "&type=movie"
-
-    //     const response = await fetch(url+apiKey+type+search);
-    //     const data = await response.json()
-    //     const dataList = []
-    //     data.Search.forEach(element => {
-    //         if(element.Poster === "N/A"){
-    //             element.Poster= "https://myerstest.com/wp-content/uploads/2017/07/NO-IMG-AVAILABLE.jpg"
-    //         }
-
-            
-    //         dataList.push(element)
-    //     });
-    //     console.log("searchData:", dataList)
-    //     this.setState({
-    //         searchData: dataList
-    //     })
-    // }
     
     render() {
         if(this.state.search) {
@@ -66,7 +43,7 @@ export default class NavBar  extends Component {
                             <Nav.Link href="/home">Home</Nav.Link>
                             <Nav.Link href="/myList">My List</Nav.Link>
                             </Nav>
-                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link href="/userLogin">Login</Nav.Link>
                             <Nav.Link onClick={this.props.userLogout}>Log Out</Nav.Link>
                             <Form inline onSubmit={this.handleSubmit}>
                             <FormControl type="text" placeholder="Search" className="mr-sm-2" value={this.state.searchText} onChange={this.handleChange}/>

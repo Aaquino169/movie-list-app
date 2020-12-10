@@ -22,8 +22,8 @@ class SearchResults  extends Component {
     console.log("match:",this.props.match)
     console.log("prop in info component:", this.props.movieID)
     const url = "http://www.omdbapi.com/?"
-    const apiKey = "&apikey=111970bd"
-    const search = "&s="+ this.state.searchText
+    const apiKey = "&apikey=" + process.env.REACT_APP_APIKEY
+    const search = "&s=" + this.state.searchText
     const type = "&type=movie"
     console.log(url+apiKey+search+type)
 

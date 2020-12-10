@@ -13,7 +13,7 @@ export default class UserListPage  extends Component {
   }
 
   async componentDidMount() {
-    const url = "http://localhost:8000/user/userList"
+    const url = process.env.REACT_APP_API_URL + "/user/userList"
     const response = await fetch(url,{
       method: "GET",
       headers:{
@@ -37,7 +37,7 @@ export default class UserListPage  extends Component {
   }
 
   removeFromList = async (movieID) => {
-    const url = "http://localhost:8000/user/removeFromList/" + movieID 
+    const url = process.env.REACT_APP_API_URL + "/user/removeFromList/" + movieID 
     console.log(movieID)
     const response = await fetch(url,{
       method: "PUT",
