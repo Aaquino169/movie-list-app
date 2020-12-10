@@ -47,9 +47,9 @@ export default class MovieHome  extends Component {
     list() {
         return this.state.moviesList.map(movie => {
             return (
-                <Card style={{ width: '50rem' }} className="bg-dark text-white movie-card" key={movie.imdbID}>
+                <Card  className="bg-dark text-white movie-card" key={movie.imdbID}>
                 <Link to={"/movieInfo/"+ movie.imdbID}>
-                    <Card.Img variant="top" src={movie.Poster} onClick={() => (this.target(movie.imdbID))}/>
+                    <Card.Img className="card-Img" variant="top" src={movie.Poster} onClick={() => (this.target(movie.imdbID))}/>
                 </Link>
                 <Card.Body>
                     <Card.Title>{movie.Title}</Card.Title>
@@ -74,12 +74,10 @@ export default class MovieHome  extends Component {
 
         return(
             <div>
-                <Router>
-                    <h2>{this.props.title}</h2>
+                    <h2 className="titles" >{this.props.title}</h2>
                     <div className= "card-container">
                         {this.list()}
                     </div>
-                </Router>
             </div>
             
             

@@ -62,11 +62,12 @@ export default class UserListPage  extends Component {
   list() {
     return this.state.userList.map(movie => {
         return (
-          <ListGroup.Item key={movie.mdbID}>
+          <ListGroup.Item className="listItem" key={movie.mdbID}>
             <Link to={"/movieInfo/"+ movie.imdbID}>
             {movie.Title}
             </Link>
-            <Button onClick={() => (this.removeFromList(movie.imdbID))}>Remove</Button>
+            <p></p>
+            <Button className="listButton" onClick={() => (this.removeFromList(movie.imdbID))}>Remove</Button>
           </ListGroup.Item>
         )
     })
@@ -75,7 +76,7 @@ export default class UserListPage  extends Component {
   render() {
     return(
       <div>
-        <h1>list page</h1>
+        <h1 className="titles">My List</h1>
         <ListGroup>
           {this.list()}
         </ListGroup>
