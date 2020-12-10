@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import "../src/App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Switch, Route, Redirect} from "react-router-dom"
+import {Switch, Route, Redirect, Router} from "react-router-dom"
 import HomeScreenDisplay from "./Components/HomeScreenDisplay/index"
 import NavBar from "./Components/NavBar/index"
 import UserLogin from "./Components/UserLogin/index"
 import MovieInfo from "./Components/MovieInfo/index"
 import UserListPage from "./Components/UserListPage/index"
+import SearchResults from "./Components/SearchResults/index"
 
 
 
@@ -17,7 +18,8 @@ export default class App  extends Component {
     this.state ={
       loggedIn:false,
       loggedInUsername:"",
-      targetMovie:""
+      targetMovie:"",
+      searchText:""
     }
   }
   
@@ -60,8 +62,9 @@ export default class App  extends Component {
        if(registerResponse.status === 201) {
          this.setState({
            loggedIn: true,
-           loggedInUsername: registerJson.data.username
          })
+         alert("A new User has been created, Dont forget to login")
+
        }
     } catch(err) {
       console.error("Error trying to register with API")
@@ -94,6 +97,8 @@ export default class App  extends Component {
             loggedIn: true,
             
           })
+          alert("You Have Logged In")
+
         console.log("state in app.js:",this.state)
 
         }
@@ -101,6 +106,12 @@ export default class App  extends Component {
       console.error("Error trying to log in")
       console.error(error)
     }
+  }
+
+  searchText = (text) => {
+    this.setState({
+      searchText: text
+    })
   }
   
   userLogout = async () => {
@@ -118,6 +129,7 @@ export default class App  extends Component {
         this.setState({
           loggedIn: false,
         })
+        alert("You Have Logged Out")
   
       }
   
@@ -140,20 +152,16 @@ export default class App  extends Component {
     }
     return(
         <div>
-            {
-              this.state.loggedIn
-              ?
-              <NavBar loggedIn={this.state.loggedIn} userLogout={this.userLogout}/>
-              :
-              <NavBar/>
-            }
-            
+            <NavBar loggedIn={this.state.loggedIn} userLogout={this.userLogout}/>
             <Switch>
               <Route path="/myList">
                 <UserListPage/>
               </Route>
               <Route path="/movieInfo/:id">
                 <MovieInfo movieID={this.state.targetMovie} />
+              </Route>
+              <Route path="/searchResults/:searchText">
+                <SearchResults/>
               </Route>
               <Route path="/home">
                 <HomeScreenDisplay targetMovieID={this.targetMovieID}/>

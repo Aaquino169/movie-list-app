@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import Card from "react-bootstrap/Card"
-import Button from "react-bootstrap/Button"
 import {BrowserRouter as Router,Link} from "react-router-dom"
 
 
@@ -48,14 +47,13 @@ export default class MovieHome  extends Component {
     list() {
         return this.state.moviesList.map(movie => {
             return (
-                <Card style={{ width: '18rem' }} className="bg-dark text-white movie-card" key={movie.imdbID}>
+                <Card style={{ width: '50rem' }} className="bg-dark text-white movie-card" key={movie.imdbID}>
                 <Link to={"/movieInfo/"+ movie.imdbID}>
                     <Card.Img variant="top" src={movie.Poster} onClick={() => (this.target(movie.imdbID))}/>
                 </Link>
                 <Card.Body>
                     <Card.Title>{movie.Title}</Card.Title>
                     <Card.Text>{movie.Year}</Card.Text>
-                    <Button variant="primary">Add To Favorites</Button>
                 </Card.Body>
                 </Card>    
             )

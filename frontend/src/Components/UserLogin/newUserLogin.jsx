@@ -1,6 +1,6 @@
 import React,{ Component } from "react"
 import {Form, Button} from "react-bootstrap"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 export default class NewUserLogin extends Component {

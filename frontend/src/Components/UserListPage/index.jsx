@@ -75,7 +75,7 @@ export default class UserListPage  extends Component {
   render() {
     return(
       <div>
-        <p>list page</p>
+        <h1>list page</h1>
         <ListGroup>
           {this.list()}
         </ListGroup>

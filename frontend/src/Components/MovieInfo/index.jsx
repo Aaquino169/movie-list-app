@@ -36,7 +36,7 @@ class MovieInfo  extends Component {
     this.setState({
       movie: data
     })
-
+    console.log("ratings:", this.state.movie.Ratings)
   }
 
   addToList = async () => {
@@ -53,22 +53,37 @@ class MovieInfo  extends Component {
     })
     console.log("movieToAddResponse:",movieToAddResponse)
     const movieToAdd = await  movieToAddResponse.json()
-    console.log(movieToAdd)
+    console.log("movieToAdd: ",movieToAdd)
+    alert("You Have Added "+ this.state.movie.Title + "to your list")
+
     }catch(err){
       console.log("err occured while adding to user list:",err)
     }
   }
 
+  // displayRatings () {
+  //   return this.state.movie.Ratings.map(element => {
+  //     return(
+  //       <div>
+  //         <p>element.Source</p>
+  //         <p>element.Value</p>
+  //       </div>
+  //     )
+  //     console.log(element)
+  //   })
+  // }
 
   render() {
+    
     return(
-      <div>
-        <p>info page</p>
+      <div className="infoPage">
+
+        <h1>{this.state.movie.Title}</h1>
         <img src={this.state.movie.Poster} alt="img"/>
-        <p>Title{this.state.movie.Title}</p>
         <p>Year {this.state.movie.Year}</p>
         <p>Rated {this.state.movie.Rated}</p>
         <p>Released {this.state.movie.Released}</p>
+        <p>Plot: {this.state.movie.Plot}</p>
         <p>Runtime {this.state.movie.Runtime}</p>
         <p>Genre {this.state.movie.Genre}</p>
         <p>Director {this.state.movie.Director}</p>
