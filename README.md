@@ -1,7 +1,5 @@
 # MyMovieList app
 
-# My Flix
-
 This project is a web app created using HTML5,Javascript,Mongodb,Mongoose,Node.js,Express and EJS. This was my first attempt to create a functional full-stack application. At the moment the user can see the movies displayed in the homepage, users with an account can add and remove movies from the site. Users can also see detailed descriptions of the movies they click on.
 
 **Access to the site**
